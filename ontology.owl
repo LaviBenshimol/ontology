@@ -1,0 +1,147 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:owl="http://www.w3.org/2002/07/owl#"
+         xml:base="Ontology.owl"
+         xmlns="Ontology.owl#">
+
+<owl:Ontology rdf:about="Ontology.owl"/>
+
+<owl:ObjectProperty rdf:about="#read">
+  <rdfs:domain rdf:resource="#Lambda"/>
+  <rdfs:range rdf:resource="#S3"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">read</rdfs:label>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#write">
+  <rdfs:domain rdf:resource="#Lambda"/>
+  <rdfs:range rdf:resource="#S3"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">write</rdfs:label>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#created">
+  <rdfs:domain rdf:resource="#Role"/>
+  <rdfs:domain rdf:resource="#Lambda"/>
+  <rdfs:range rdf:resource="#DynamoDB"/>
+  <rdfs:range rdf:resource="#S3"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_policy">
+  <rdfs:domain rdf:resource="#Role"/>
+  <rdfs:range rdf:resource="#Policy"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">has_policy</rdfs:label>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_assumed">
+  <rdfs:domain rdf:resource="#User"/>
+  <rdfs:domain rdf:resource="#Lambda"/>
+  <rdfs:range rdf:resource="#Role"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">has_assumed</rdfs:label>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_invoke">
+  <rdfs:domain rdf:resource="#Role"/>
+  <rdfs:range rdf:resource="#Lambda"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">has_invoke</rdfs:label>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_accses">
+  <rdfs:domain rdf:resource="#Role"/>
+  <rdfs:range rdf:resource="#Storage"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">has_accses</rdfs:label>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_read">
+  <rdfs:subPropertyOf rdf:resource="#has_accses"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">has_read</rdfs:label>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_s3_read">
+  <rdfs:domain rdf:resource="#Role"/>
+  <rdfs:range rdf:resource="#S3"/>
+  <rdfs:subPropertyOf rdf:resource="#has_read"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">has_s3_read</rdfs:label>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_DynamoDB_read">
+  <rdfs:domain rdf:resource="#Role"/>
+  <rdfs:range rdf:resource="#DynamoDB"/>
+  <rdfs:subPropertyOf rdf:resource="#has_read"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">has_DynamoDB_read</rdfs:label>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_write">
+  <rdfs:subPropertyOf rdf:resource="#has_accses"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">has_write</rdfs:label>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_s3_write">
+  <rdfs:domain rdf:resource="#Role"/>
+  <rdfs:range rdf:resource="#S3"/>
+  <rdfs:subPropertyOf rdf:resource="#has_write"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">has_s3_write</rdfs:label>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_DynamoDB_write">
+  <rdfs:domain rdf:resource="#Role"/>
+  <rdfs:range rdf:resource="#DynamoDB"/>
+  <rdfs:subPropertyOf rdf:resource="#has_write"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">has_DynamoDB_write</rdfs:label>
+</owl:ObjectProperty>
+
+<owl:Class rdf:about="#IAM">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">IAM</rdfs:label>
+</owl:Class>
+
+<owl:Class rdf:about="#Policy">
+  <rdfs:subClassOf rdf:resource="#IAM"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Policy</rdfs:comment>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Policy</rdfs:label>
+</owl:Class>
+
+<owl:Class rdf:about="#Role">
+  <rdfs:subClassOf rdf:resource="#IAM"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Role</rdfs:comment>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Role</rdfs:label>
+</owl:Class>
+
+<owl:Class rdf:about="#User">
+  <rdfs:subClassOf rdf:resource="#IAM"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">User</rdfs:comment>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">User</rdfs:label>
+</owl:Class>
+
+<owl:Class rdf:about="#Compute">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Compute</rdfs:comment>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Compute</rdfs:label>
+</owl:Class>
+
+<owl:Class rdf:about="#Lambda">
+  <rdfs:subClassOf rdf:resource="#Compute"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lambda</rdfs:comment>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lambda</rdfs:label>
+</owl:Class>
+
+<owl:Class rdf:about="#Storage">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Storage</rdfs:comment>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Storage</rdfs:label>
+</owl:Class>
+
+<owl:Class rdf:about="#S3">
+  <rdfs:subClassOf rdf:resource="#Storage"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">S3</rdfs:comment>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">S3</rdfs:label>
+</owl:Class>
+
+<owl:Class rdf:about="#DynamoDB">
+  <rdfs:subClassOf rdf:resource="#Storage"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">DynamoDb</rdfs:comment>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">DynamoDB</rdfs:label>
+</owl:Class>
+
+
+</rdf:RDF>
