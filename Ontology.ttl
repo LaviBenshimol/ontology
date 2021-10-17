@@ -1,0 +1,136 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://njh.me/Ontology.owl> a owl:Ontology .
+<http://njh.me/Ontology.owl#read>
+  a owl:ObjectProperty ;
+  rdfs:domain <http://njh.me/Ontology.owl#Lambda> ;
+  rdfs:range <http://njh.me/Ontology.owl#S3> ;
+  rdfs:label "read"^^xsd:string .
+
+<http://njh.me/Ontology.owl#write>
+  a owl:ObjectProperty ;
+  rdfs:domain <http://njh.me/Ontology.owl#Lambda> ;
+  rdfs:range <http://njh.me/Ontology.owl#S3> ;
+  rdfs:label "write"^^xsd:string .
+
+<http://njh.me/Ontology.owl#created>
+  a owl:ObjectProperty ;
+  rdfs:domain <http://njh.me/Ontology.owl#Role>, <http://njh.me/Ontology.owl#Lambda> ;
+  rdfs:range <http://njh.me/Ontology.owl#DynamoDB>, <http://njh.me/Ontology.owl#S3> .
+
+<http://njh.me/Ontology.owl#has_policy>
+  a owl:ObjectProperty ;
+  rdfs:domain <http://njh.me/Ontology.owl#Role> ;
+  rdfs:range <http://njh.me/Ontology.owl#Policy> ;
+  rdfs:label "has_policy"^^xsd:string .
+
+<http://njh.me/Ontology.owl#has_assumed>
+  a owl:ObjectProperty ;
+  rdfs:domain <http://njh.me/Ontology.owl#User>, <http://njh.me/Ontology.owl#Lambda> ;
+  rdfs:range <http://njh.me/Ontology.owl#Role> ;
+  rdfs:label "has_assumed"^^xsd:string .
+
+<http://njh.me/Ontology.owl#has_invoke>
+  a owl:ObjectProperty ;
+  rdfs:domain <http://njh.me/Ontology.owl#Role> ;
+  rdfs:range <http://njh.me/Ontology.owl#Lambda> ;
+  rdfs:label "has_invoke"^^xsd:string .
+
+<http://njh.me/Ontology.owl#has_accses>
+  a owl:ObjectProperty ;
+  rdfs:domain <http://njh.me/Ontology.owl#Role> ;
+  rdfs:range <http://njh.me/Ontology.owl#Storage> ;
+  rdfs:label "has_accses"^^xsd:string .
+
+<http://njh.me/Ontology.owl#has_read>
+  a owl:ObjectProperty ;
+  rdfs:subPropertyOf <http://njh.me/Ontology.owl#has_accses> ;
+  rdfs:label "has_read"^^xsd:string .
+
+<http://njh.me/Ontology.owl#has_s3_read>
+  a owl:ObjectProperty ;
+  rdfs:domain <http://njh.me/Ontology.owl#Role> ;
+  rdfs:range <http://njh.me/Ontology.owl#S3> ;
+  rdfs:subPropertyOf <http://njh.me/Ontology.owl#has_read> ;
+  rdfs:label "has_s3_read"^^xsd:string .
+
+<http://njh.me/Ontology.owl#has_DynamoDB_read>
+  a owl:ObjectProperty ;
+  rdfs:domain <http://njh.me/Ontology.owl#Role> ;
+  rdfs:range <http://njh.me/Ontology.owl#DynamoDB> ;
+  rdfs:subPropertyOf <http://njh.me/Ontology.owl#has_read> ;
+  rdfs:label "has_DynamoDB_read"^^xsd:string .
+
+<http://njh.me/Ontology.owl#has_write>
+  a owl:ObjectProperty ;
+  rdfs:subPropertyOf <http://njh.me/Ontology.owl#has_accses> ;
+  rdfs:label "has_write"^^xsd:string .
+
+<http://njh.me/Ontology.owl#has_s3_write>
+  a owl:ObjectProperty ;
+  rdfs:domain <http://njh.me/Ontology.owl#Role> ;
+  rdfs:range <http://njh.me/Ontology.owl#S3> ;
+  rdfs:subPropertyOf <http://njh.me/Ontology.owl#has_write> ;
+  rdfs:label "has_s3_write"^^xsd:string .
+
+<http://njh.me/Ontology.owl#has_DynamoDB_write>
+  a owl:ObjectProperty ;
+  rdfs:domain <http://njh.me/Ontology.owl#Role> ;
+  rdfs:range <http://njh.me/Ontology.owl#DynamoDB> ;
+  rdfs:subPropertyOf <http://njh.me/Ontology.owl#has_write> ;
+  rdfs:label "has_DynamoDB_write"^^xsd:string .
+
+<http://njh.me/Ontology.owl#IAM>
+  a owl:Class ;
+  rdfs:subClassOf owl:Thing ;
+  rdfs:label "IAM"^^xsd:string .
+
+<http://njh.me/Ontology.owl#Policy>
+  a owl:Class ;
+  rdfs:subClassOf <http://njh.me/Ontology.owl#IAM> ;
+  rdfs:comment "Policy"^^xsd:string ;
+  rdfs:label "Policy"^^xsd:string .
+
+<http://njh.me/Ontology.owl#Role>
+  a owl:Class ;
+  rdfs:subClassOf <http://njh.me/Ontology.owl#IAM> ;
+  rdfs:comment "Role"^^xsd:string ;
+  rdfs:label "Role"^^xsd:string .
+
+<http://njh.me/Ontology.owl#User>
+  a owl:Class ;
+  rdfs:subClassOf <http://njh.me/Ontology.owl#IAM> ;
+  rdfs:comment "User"^^xsd:string ;
+  rdfs:label "User"^^xsd:string .
+
+<http://njh.me/Ontology.owl#Compute>
+  a owl:Class ;
+  rdfs:subClassOf owl:Thing ;
+  rdfs:comment "Compute"^^xsd:string ;
+  rdfs:label "Compute"^^xsd:string .
+
+<http://njh.me/Ontology.owl#Lambda>
+  a owl:Class ;
+  rdfs:subClassOf <http://njh.me/Ontology.owl#Compute> ;
+  rdfs:comment "Lambda"^^xsd:string ;
+  rdfs:label "Lambda"^^xsd:string .
+
+<http://njh.me/Ontology.owl#Storage>
+  a owl:Class ;
+  rdfs:subClassOf owl:Thing ;
+  rdfs:comment "Storage"^^xsd:string ;
+  rdfs:label "Storage"^^xsd:string .
+
+<http://njh.me/Ontology.owl#S3>
+  a owl:Class ;
+  rdfs:subClassOf <http://njh.me/Ontology.owl#Storage> ;
+  rdfs:comment "S3"^^xsd:string ;
+  rdfs:label "S3"^^xsd:string .
+
+<http://njh.me/Ontology.owl#DynamoDB>
+  a owl:Class ;
+  rdfs:subClassOf <http://njh.me/Ontology.owl#Storage> ;
+  rdfs:comment "DynamoDb"^^xsd:string ;
+  rdfs:label "DynamoDB"^^xsd:string .
